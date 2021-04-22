@@ -122,6 +122,28 @@ i.friends{
   color: $appRedColor;
 }
 
+.menu-icon:hover{
+  color: $appRedColor;
+}
+
+.menu-icon{
+  color: white;
+}
+
+.menu-icon:focus{
+  box-shadow: none;
+}
+
+.bg-red{
+  background-color: $appRedColor;
+  color: white;
+}
+
+.bg-red > li > .dropdown-item:hover{
+  background-color: #be0e36;
+}
+
+
 @media only screen and (max-width: 600px) {
   .lg-desktop{
     padding: 0;

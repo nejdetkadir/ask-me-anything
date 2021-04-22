@@ -8,24 +8,21 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
         li.nav-item
           = link_to "Home", root_path, class: "nav-link"
         li.nav-item
-          a.nav-link(href='#') Link
-        li.nav-item.dropdown
-          a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
-            | Dropdown
-          ul.dropdown-menu(aria-labelledby='navbarDropdown')
-            li
-              a.dropdown-item(href='#') Action
-            li
-              a.dropdown-item(href='#') Another action
-            li
-              hr.dropdown-divider
-            li
-              a.dropdown-item(href='#') Something else here
-        li.nav-item
-          a.nav-link.disabled(href='#' tabindex='-1' aria-disabled='true') Disabled
+          = link_to "Explore", root_path, class: "nav-link"
       .d-flex
         - if user_signed_in?
-          = link_to "Logout", destroy_user_session_path, class: "btn btn-outline-danger me-2", data: {:confirm => 'Are you sure?'}, method: :delete
+          = link_to profile_page_path(current_user), class: "btn menu-icon" do
+            = icon('fas', 'user')
+          = link_to profile_page_path(current_user), class: "btn menu-icon" do
+            = icon('fas', 'inbox')
+          .dropdown
+            button#settingDropdown.btn.menu-icon.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+              = icon('fas', 'cog')
+            ul.dropdown-menu.bg-red(aria-labelledby='settingDropdown')
+              li
+                = link_to "Settings", root_path, class: "dropdown-item text-white"
+              li
+                = link_to "Logout", destroy_user_session_path, class: "dropdown-item text-white", data: {:confirm => 'Are you sure?'}, method: :delete
         - else
           = link_to "Log in", new_user_session_path, class: "btn btn-outline-light me-2"
           = link_to "Sign up", new_user_registration_path, class: "btn btn-warning"
