@@ -1,0 +1,19 @@
+.row 
+  .col-md-5.mx-auto
+    .card.p-3
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .form-floating.mb-3     
+          = f.email_field :email, class: "form-control", placeholder: "Email"
+          = f.label :email
+        .form-floating.mb-3
+          = f.password_field :password, class: "form-control", placeholder: "Password"
+          = f.label :password
+        - if devise_mapping.rememberable?
+          .mb-3.form-check
+            = f.check_box :remember_me, class: "form-check-input"
+            = f.label :remember_me, class: "form-check-label"
+        .d-grid.gap-2
+          = f.submit "Log in", class: "btn btn-primary"
+      hr.mt-4
+      .d-flex.justify-content-between.mt-3
+        = render "devise/shared/omniauths", isSignIn: true
