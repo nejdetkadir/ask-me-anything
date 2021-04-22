@@ -1,1 +1,107 @@
-= @user.username
+.backgroundWrap.withImage
+  = image_tag @user.background_img
+  .gradient
+.row.p-3
+  .col-md-10.col-sm-12.mx-auto
+    .d-flex.justify-content-center
+      = image_tag @user.profile_img, :style => "width: 150px; height: auto;"
+      .d-block.text-white
+        p.fw-normal @#{@user.username}
+        h3.fw-bold #{@user.fullname}
+        .dropdown
+          button#profileSettingButton.btn.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+            = icon('fas', 'cog', class: "text-white")
+          ul.dropdown-menu(aria-labelledby='profileSettingButton')
+            li
+              a.dropdown-item(href='#') Action
+            li
+              a.dropdown-item(href='#') Another action
+            li
+              a.dropdown-item(href='#') Something else here
+    hr.bg-white.mt-5.mb-5
+    .row
+      .col-md-8.col-sm-3
+        .card.ask-card.text-white
+          .card-body
+            p #{@user == current_user ? "Ask yourself" : "Ask @#{@user.username}"}:
+            textarea.form-control.ask(rows='1' placeholder="What, when, why… ask")
+            .d-flex.mt-2.justify-content-between.align-items-center
+              .form-check.form-switch
+                input.form-check-input(type='checkbox' checked='')
+                label.form-check-label Ask anonymously
+              .d-flex.align-items-center
+                small 300
+                button.btn.btn-danger.btn-sm.ms-2
+                  = icon('fas', 'paper-plane', class: "text-white")
+        nav.mt-2(style="--bs-breadcrumb-divider: '>';" aria-label='breadcrumb')
+          ol.breadcrumb
+            li.breadcrumb-item
+              = link_to "Home", root_path, class: "text-decoration-none text-white"
+            li.breadcrumb-item.active @#{@user.username}
+        .mt-2
+          - 10.times do |post|
+            .card.mt-3.mb-3
+              .card-body
+                - if post % 2 == 0
+                  = link_to profile_page_path(@user), class: "text-decoration-none"  do
+                    .d-flex
+                      div
+                        = image_tag @user.profile_img, :width => "25", :height => "25"
+                      .div
+                        p.ask-username.align-items-center @#{@user.username}
+                - else
+                  p Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities. For more complex implementations, custom CSS may be necessary
+                  .d-flex
+                    div
+                      = image_tag @user.profile_img, :width => "25", :height => "25"
+                    .div
+                      p.ask-username.align-items-center @#{@user.username}
+                p.fw-lighter.ask-time #{time_ago_in_words(Date.today)} ago
+                p Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities. For more complex implementations, custom CSS may be necessary
+                .d-flex.ask-actions.justify-content-between
+                  = icon('fas', 'heart')
+                  .btn-group.dropup
+                    button.btn(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                      = icon('fas', 'ellipsis-h')
+                    ul.dropdown-menu
+                      li
+                        a.dropdown-item(href='#') Action
+                      li
+                        a.dropdown-item(href='#') Another action
+                      li
+                        a.dropdown-item(href='#') Something else here   
+      .col-md-4
+        .d-flex.justify-content-evenly.profile-counts
+          div.d-block
+            = icon('fas', 'comments', class: "text-white posts")
+            .text-center.text-white.mt-2.fw-bolder 11
+            .text-center.text-white.fw-light Posts
+          div
+            = icon('fas', 'heart', class: "text-white likes")
+            .text-center.text-white.mt-2.fw-bolder 11
+            .text-center.text-white.fw-light Likes
+          div
+            = icon('fas', 'users', class: "text-white friends")
+            .text-center.text-white.mt-2.fw-bolder 11
+            .text-center.text-white.fw-light Friends
+        .d-flex.justify-content-between.mt-4
+          .fw-bolder.text-white About me
+          .fw-normal.text-danger.fs-13
+            = icon('fas', 'edit')
+            |&nbsp;Edit profile
+        .d-flex.justify-content-start.mt-3.align-items-center
+          = icon('fas', 'user', class: "color-grey")
+          .fs-13.ms-2.color-grey #{@user.bio}
+        .d-flex.justify-content-start.mt-2.align-items-center
+          = icon('fas', 'map-marker-alt', class: "color-grey")
+          .fs-13.ms-2.color-grey #{@user.location}
+        .d-flex.justify-content-start.mt-2.align-items-center
+          = icon('fas', 'link', class: "color-grey")
+          = link_to @user.website, @user.website, class: "fs-13 ms-2 color-red text-decoration-none red-link-hover", target: "_blank"
+        .d-flex.justify-content-between.mt-4
+          .fw-bolder.text-white Photo gallery
+          .fw-normal.text-danger.fs-13
+            = icon('far', 'user-circle')
+            |&nbsp;Change photo
+        .d-flex.justify-content-start.mt-2.align-items-center
+          .color-grey.fs-13 Nothing to show here at this time

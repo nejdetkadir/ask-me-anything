@@ -3,10 +3,123 @@
 @import "font-awesome";
 @import "toastr/build/toastr";
 
+$appDarkColor: #2b3237;
+$appRedColor: #dc3545;
+
+body{
+  background-color: $appDarkColor !important;
+}
+
 .lg-desktop{
   padding: .5rem 1rem;
   font-size: 1.25rem;
   border-radius: .3rem;
+}
+
+#profileSettingButton:focus{
+  box-shadow: none !important;
+}
+
+.ask-card{
+  background: rgba(0,0,0,0.3);
+  border-radius: 7px;
+}
+
+textarea.ask{
+  max-height: 150px;
+}
+
+textarea.ask:focus{
+  box-shadow: none !important;
+}
+
+.form-check-label{
+  font-size: 13px;
+}
+
+.backgroundWrap {
+  width: 100%;
+  min-height: 400px;
+  max-height: 400px;
+  overflow: hidden;
+  background-color: $appDarkColor;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -10;
+}
+
+.backgroundWrap.withImage img {
+  width: 100%;
+  min-height: 400px;
+  object-fit: cover;
+}
+
+.backgroundWrap .gradient {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.4) 30%, #2b3237);
+}
+
+.ask-username{
+  font-size: 12px;
+  font-weight: normal;
+  padding: 5px 5px 5px 0px;
+  color: $appRedColor;
+}
+
+.ask-time{
+  font-size: 13px;
+}
+
+.ask-actions > i{
+  color: #cdcdd9;
+}
+
+.ask-actions > .dropup > .btn > i{
+  color: #cdcdd9;
+}
+
+.ask-actions > .dropup > .btn:focus{
+  box-shadow: none !important;
+}
+
+.profile-counts > div > i{
+  padding: 15px 15px 15px 15px;
+  border-radius: 50px;
+}
+
+i.posts{
+  background-color: #00aab8;
+}
+
+i.likes{
+  background-color: $appRedColor;
+}
+
+i.friends{
+  background-color: #784589;
+}
+
+.fs-13{
+  font-size: 13px;
+}
+
+.color-grey{
+  color: #cdcdd9;
+}
+
+.color-red{
+  color: $appRedColor;
+}
+
+.red-link-hover:hover{
+  color: $appRedColor;
 }
 
 @media only screen and (max-width: 600px) {
