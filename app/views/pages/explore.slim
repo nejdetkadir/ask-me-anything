@@ -1,0 +1,11 @@
+.row
+  - @users.each do |user|
+    .col-lg-3.p-3
+      .user-card.p-3
+        .text-center.text-white
+          = link_to profile_page_path(user), class: "text-white text-decoration-none" do
+            = image_tag user.profile_img, class: "profile-pic", height: "150", width: "auto"
+          .mt-2
+            = link_to user.fullname, profile_page_path(user), class: "text-white text-decoration-none"
+            br
+            = link_to "@#{user.username}", profile_page_path(user), class: "fs-13 text-white text-decoration-none"

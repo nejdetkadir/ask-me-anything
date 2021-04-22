@@ -143,6 +143,24 @@ i.friends{
   background-color: #be0e36;
 }
 
+.profile-pic{
+  border: 4px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profile-pic:hover{
+  border-color: $appRedColor;
+}
+
+.user-card{
+  background-color: #00000045;
+  border-radius: 40px;
+}
+
+.user-card > .text-center > .mt-2 > .text-white:hover{
+  color: $appRedColor !important;
+}
 
 @media only screen and (max-width: 600px) {
   .lg-desktop{

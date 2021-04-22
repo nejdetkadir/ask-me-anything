@@ -4,4 +4,5 @@ Rails.application.routes.draw do
 
   # general
   get ':id', to: 'pages#profile', as: :profile_page
+  get 'pages/explore', to: 'pages#explore', as: :explore_page
 end
