@@ -1,0 +1,21 @@
+.p-5.mb-4.bg-light.rounded-3
+  .container-fluid.py-5
+    h1.display-5.fw-bold.text-center Welcome to ASK ME ANYTHING
+    .text-center
+      p.col-md-8.mx-auto.fs-4 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    .d-flex.justify-content-evenly
+      = link_to "Sign up with Google", user_google_oauth2_omniauth_authorize_path, class: "btn btn-primary lg-desktop", method: :post
+      = link_to "Sign up with Github", user_github_omniauth_authorize_path, class: "btn btn-dark lg-desktop", method: :post
+.my-3.p-3.bg-light.rounded.shadow-sm
+  h6.border-bottom.pb-2.mb-0 Suggestions
+  - 4.times do |user|
+    .d-flex.text-muted.pt-3
+      svg.bd-placeholder-img.flex-shrink-0.me-2.rounded(width='32' height='32' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder: 32x32' preserveAspectRatio='xMidYMid slice' focusable='false')
+        title Placeholder
+        rect(width='100%' height='100%' fill='#007bff')
+        text(x='50%' y='50%' fill='#007bff' dy='.3em') 32x32
+      .pb-3.mb-0.small.lh-sm.border-bottom.w-100
+        .d-flex.justify-content-between
+          strong.text-gray-dark Full Name
+          = link_to "See Profile", root_path, class: "text-decoration-none"
+        span.d-block @username

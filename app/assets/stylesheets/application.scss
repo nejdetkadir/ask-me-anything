@@ -2,3 +2,25 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "toastr/build/toastr";
+
+.lg-desktop{
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: .3rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .lg-desktop{
+    padding: 0;
+    font-size: 1rem;
+    border-radius: .25rem;
+  }
+
+  .justify-content-evenly > .lg-desktop:first-child{
+    margin-right: 0.3rem;
+  }
+
+  .justify-content-evenly > .lg-desktop:last-child {
+    margin-left: 0.3rem;
+  }
+}
