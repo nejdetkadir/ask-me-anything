@@ -1,4 +1,7 @@
+progress_bar = ProgressBar.create(:title => "Seed data", :starting_at => 0, :total => 10)
+
 10.times do |user|
+  progress_bar&.increment
   User.create(
     email: Faker::Internet.email,
     password: "123456789",
