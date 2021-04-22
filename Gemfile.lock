@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: aa31845ed54c25eb2638d716bfddf59771b502aa
+  branch: master
+  specs:
+    faker (2.18.0)
+      i18n (>= 1.6, < 2)
+
+GIT
   remote: https://github.com/heartcombo/devise.git
   revision: 5d5636f03ac19e8188d99c044d4b5e90124313af
   branch: master
@@ -276,6 +284,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise!
+  faker!
   font-awesome-sass (~> 5.15.1)
   jbuilder (~> 2.7)
   listen (~> 3.3)
