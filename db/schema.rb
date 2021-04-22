@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_22_180102) do
+ActiveRecord::Schema.define(version: 2021_04_22_212205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "asks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "friend_id", null: false
+    t.string "ask", default: "", null: false
+    t.text "answer", default: "", null: false
+    t.boolean "is_anonymous", default: true
+    t.string "answer_image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_asks_on_user_id"
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -48,4 +60,5 @@ ActiveRecord::Schema.define(version: 2021_04_22_180102) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
+  add_foreign_key "asks", "users"
 end

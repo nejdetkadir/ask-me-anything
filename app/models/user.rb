@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   extend FriendlyId
   friendly_id :username, use: :slugged
+
+  has_many :asks, dependent: :destroy
+  has_many :friends, through: :asks
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
