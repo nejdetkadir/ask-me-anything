@@ -4,6 +4,9 @@ class PagesController < ApplicationController
 
   def profile
     @user = User.friendly.find(params[:id])
+
+    @ask = Ask.new
+    @ask.friend = @user
   end
 
   def explore

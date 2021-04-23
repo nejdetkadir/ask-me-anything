@@ -30,16 +30,17 @@
     .row
       .col-md-8.col-sm-3
         .card.ask-card.text-white
-          .card-body
+          = form_with model: @ask, html: {class: "card-body"} do |f|
+            = f.hidden_field :friend_id
             p #{@user == current_user ? "Ask yourself" : "Ask @#{@user.username}"}:
-            textarea.form-control.ask(rows='1' placeholder="What, when, why… ask")
+            = f.text_area :ask, class: "form-control ask", rows: "1", placeholder: "What, when, why… ask"
             .d-flex.mt-2.justify-content-between.align-items-center
               .form-check.form-switch
-                input.form-check-input(type='checkbox' checked='')
+                = f.check_box :is_anonymous, class: "input form-check-input"
                 label.form-check-label Ask anonymously
               .d-flex.align-items-center
                 small 300
-                button.btn.btn-danger.btn-sm.ms-2
+                = button_tag class: "button btn btn-danger btn-sm ms-2" do
                   = icon('fas', 'paper-plane', class: "text-white")
         nav.mt-2(style="--bs-breadcrumb-divider: '>';" aria-label='breadcrumb')
           ol.breadcrumb
