@@ -8,16 +8,24 @@
       .d-block.text-white
         p.fw-normal @#{@user.username}
         h3.fw-bold #{@user.fullname}
-        .dropdown
-          button#profileSettingButton.btn.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
-            = icon('fas', 'cog', class: "text-white")
-          ul.dropdown-menu(aria-labelledby='profileSettingButton')
-            li
-              a.dropdown-item(href='#') Action
-            li
-              a.dropdown-item(href='#') Another action
-            li
-              a.dropdown-item(href='#') Something else here
+        - if user_signed_in?
+          - if current_user == @user
+            .dropdown
+              button#profileSettingButton.btn.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                = icon('fas', 'cog', class: "text-white")
+              ul.dropdown-menu(aria-labelledby='profileSettingButton')
+                li
+                  a.dropdown-item(href='#') Action
+                li
+                  a.dropdown-item(href='#') Another action
+                li
+                  a.dropdown-item(href='#') Something else here
+          - else
+            - if current_user.pending_friends.include?(@user)
+              span.badge.bg-warning.text-dark Pending your request
+            - else 
+              = form_with do |f|
+                = f.submit "#{current_user.friends_with?(@user) ? 'Remove friend' : 'Send friend request'}", class: "btn #{current_user.friends_with?(@user) ? 'btn-outline-danger' : 'btn-outline-warning'} text-white fs-13"
     hr.bg-white.mt-5.mb-5
     .row
       .col-md-8.col-sm-3
@@ -74,7 +82,7 @@
         .d-flex.justify-content-evenly.profile-counts
           div.d-block
             = icon('fas', 'comments', class: "text-white posts")
-            .text-center.text-white.mt-2.fw-bolder 11
+            .text-center.text-white.mt-2.fw-bolder #{@user.asks.count}
             .text-center.text-white.fw-light Posts
           div
             = icon('fas', 'heart', class: "text-white likes")
