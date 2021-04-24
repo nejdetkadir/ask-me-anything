@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post ':id', to: 'users#create_friend', as: :send_friend_request
   post ':id/accept', to: 'users#accept_friend', as: :accept_friend_request
   post ':id/decline', to: 'users#decline_friend', as: :decline_friend_request
+  post ':id/remove', to: 'users#remove_friend', as: :remove_friend_request
 
   # general
   get ':id', to: 'pages#profile', as: :profile_page

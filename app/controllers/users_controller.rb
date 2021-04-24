@@ -20,12 +20,26 @@ class UsersController < ApplicationController
       if current_user.decline_request(@friend)
         flash[:notice] = "You declined friend request of #{@friend.fullname}"
       else
-        flash[:alert] = "Something went wrong when declined friend request of #{@friend.fullname}"
+        flash[:alert] = "Something went wrong when declining friend request of #{@friend.fullname}"
       end
     else
       flash[:alert] = "Something went wrong"
     end
     redirect_to requested_friends_page_path
+  end
+
+  def remove_friend
+    if current_user.friends_with?(@friend)
+      current_user.remove_friend(@friend)
+      if current_user.friends_with?(@friend)
+        flash[:alert] = "Something went wrong when removing #{@friend.fullname} from friends"
+      else
+        flash[:notice] = "You removed #{@friend.fullname} from friends"
+      end
+    else
+      flash[:alert] = "Something went wrong"
+    end
+    redirect_to profile_page_path(current_user)
   end
 
   def create_friend
