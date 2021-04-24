@@ -15,7 +15,7 @@
                 = icon('fas', 'cog', class: "text-white")
               ul.dropdown-menu(aria-labelledby='profileSettingButton')
                 li
-                  a.dropdown-item(href='#') Action
+                  a.dropdown-item(type="button" data-bs-toggle="modal" data-bs-target="#profilePicModal") Change photo 
                 li
                   a.dropdown-item(href='#') Another action
                 li
@@ -130,10 +130,37 @@
                 .d-flex.friend-actions
                   = link_to remove_friend_request_path(user), method: :post
                     = icon('fas', 'trash', class: "decline")
+- if user_signed_in? 
+  - if current_user == @user
+      #profilePicModal.modal.fade(tabindex='-1' aria-labelledby='profilePicModalLabel' aria-hidden='true')
+        .modal-dialog.modal-dialog-centered
+          = form_with(model: current_user, url: update_user_path, class: "modal-content") do |f|
+            .modal-header
+              button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+            .modal-body
+              .text-center
+                = f.file_field :profile_img, class: "d-none", accept: 'image/*'
+                = image_tag @user.profile_img_url(:large), id: "modal-profile-picture"
+                .fw-normal.text-danger.fs-13.mt-3#change-pp-text Change photo
+            .modal-footer
+              button.btn.btn-light(type='button' data-bs-dismiss='modal') Close
+              = f.submit "Save", class: "btn bg-red-w"
+
 javascript:
   document.addEventListener("turbolinks:load", function() {
     const friendIcon = document.getElementById('friendIcon')
     friendIcon.setAttribute('type', 'button')
     friendIcon.setAttribute('data-bs-toggle', 'modal')
     friendIcon.setAttribute('data-bs-target', '#friendsModal')
+
+    const changePPtext = document.getElementById('change-pp-text')
+    changePPtext.addEventListener('click', function() {
+      document.getElementById("user_profile_img").click()
+    })
+
+    document.getElementById("user_profile_img").addEventListener('change', function(e) {
+      document.getElementById("modal-profile-picture").setAttribute('src', URL.createObjectURL(e.target.files[0]))
+      document.getElementById("modal-profile-picture").style.width = "150px"
+      document.getElementById("modal-profile-picture").style.height = "150px"
+    })
   })

@@ -1,6 +1,16 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_friend
+  before_action :set_friend, expect: %w[update]
+  before_action :user_params, only: %w[update]
+
+  def update
+    if current_user.update(user_params)
+      flash[:notice] = "Your profile updated successfully"
+    else
+      flash[:alert] = "Something went wrong"
+    end
+    redirect_to profile_page_path(current_user)
+  end
 
   def accept_friend
     if current_user.requested_friends.include?(@friend)
@@ -60,5 +70,9 @@ class UsersController < ApplicationController
   private
     def set_friend
       @friend = User.friendly.find(params[:id])
+    end
+
+    def user_params
+      params.require(:user).permit(:profile_img)
     end
 end

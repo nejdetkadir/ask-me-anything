@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   post ':id/decline', to: 'users#decline_friend', as: :decline_friend_request
   post ':id/remove', to: 'users#remove_friend', as: :remove_friend_request
 
+  # updates of user
+  patch ':id/update', to: 'users#update', as: :update_user
+
   # general
   get ':id', to: 'pages#profile', as: :profile_page
   get 'pages/explore', to: 'pages#explore', as: :explore_page

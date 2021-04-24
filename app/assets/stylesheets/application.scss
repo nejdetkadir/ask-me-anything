@@ -185,6 +185,19 @@ i.friends{
   background-color: #ff00004f;
 }
 
+#change-pp-text{
+  cursor: pointer;
+}
+
+.bg-red-w{
+  background-color: $appRedColor;
+  color: white;
+}
+
+.bg-red-w:hover{
+  color: white;
+}
+
 @media only screen and (max-width: 600px) {
   .lg-desktop{
     padding: 0;
