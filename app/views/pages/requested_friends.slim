@@ -1,0 +1,17 @@
+.my-3.p-3.bg-light.rounded.shadow-sm
+  h6.border-bottom.pb-2.mb-0 Requested friends
+  - if @requested_friends.count > 0
+    - @requested_friends.each do |user|
+      .d-flex.text-muted.pt-3
+        = image_tag user.profile_img, :height => "32", :width => "32"
+        .pb-3.mb-0.small.lh-sm.border-bottom.w-100
+          .d-flex.justify-content-between.align-items-center
+            strong.text-gray-dark #{user.fullname} (@#{user.username})
+            .d-flex.friend-actions
+              = link_to accept_friend_request_path(user), method: :post
+                = icon('fas', 'check', class: "accept")
+              = link_to decline_friend_request_path(user), method: :post
+                = icon('fas', 'minus', class: "decline")
+              //= link_to "See Profile", root_path, class: "text-decoration-none"
+  - else
+    .alert.alert-primary You don't have any friend requests

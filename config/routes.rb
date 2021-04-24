@@ -7,8 +7,11 @@ Rails.application.routes.draw do
 
   # users
   post ':id', to: 'users#create_friend', as: :send_friend_request
+  post ':id/accept', to: 'users#accept_friend', as: :accept_friend_request
+  post ':id/decline', to: 'users#decline_friend', as: :decline_friend_request
 
   # general
   get ':id', to: 'pages#profile', as: :profile_page
   get 'pages/explore', to: 'pages#explore', as: :explore_page
+  get 'pages/requested-friends', to: 'pages#requested_friends', as: :requested_friends_page
 end

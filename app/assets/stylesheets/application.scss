@@ -162,6 +162,28 @@ i.friends{
   color: $appRedColor !important;
 }
 
+.friend-actions > a > i{
+  padding: 5px 5px 5px 5px;
+  font-size: 20px;
+  border-radius: 50%;
+}
+
+.friend-actions > a > i.accept{
+  color: green;
+}
+
+.friend-actions > a > i.accept:hover{
+  background-color: lightgreen;
+}
+
+.friend-actions a > i.decline{
+  color: red;
+}
+
+.friend-actions a > i.decline:hover{
+  background-color: #ff00004f;
+}
+
 @media only screen and (max-width: 600px) {
   .lg-desktop{
     padding: 0;

@@ -91,7 +91,7 @@
             .text-center.text-white.fw-light Likes
           div
             = icon('fas', 'users', class: "text-white friends")
-            .text-center.text-white.mt-2.fw-bolder 11
+            .text-center.text-white.mt-2.fw-bolder #{@user.friends.count}
             .text-center.text-white.fw-light Friends
         .d-flex.justify-content-between.mt-4
           .fw-bolder.text-white About me

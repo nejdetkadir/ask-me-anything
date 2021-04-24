@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!, only: [:requested_friends]
+
   def home
   end
 
@@ -7,6 +9,10 @@ class PagesController < ApplicationController
 
     @ask = Ask.new
     @ask.friend = @user
+  end
+
+  def requested_friends
+    @requested_friends = current_user.requested_friends
   end
 
   def explore
