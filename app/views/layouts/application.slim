@@ -11,6 +11,7 @@ html
     = render "layouts/shared/header"
     main.container.mt-4.mb-4
       = yield
+      = yield(:js)
     - if notice
       = raw "<script>toastr.success('"+notice+"')</script>"
     -if alert

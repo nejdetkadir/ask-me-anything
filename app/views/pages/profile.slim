@@ -145,22 +145,25 @@
             .modal-footer
               button.btn.btn-light(type='button' data-bs-dismiss='modal') Close
               = f.submit "Save", class: "btn bg-red-w"
+      - content_for :js do
+        javascript:
+          document.addEventListener('turbolinks:load', function() {
+            let changePPtext = document.getElementById('change-pp-text')
+            changePPtext.addEventListener('click', function() {
+              document.getElementById("user_profile_img").click()
+            })
 
-javascript:
-  document.addEventListener("turbolinks:load", function() {
-    const friendIcon = document.getElementById('friendIcon')
-    friendIcon.setAttribute('type', 'button')
-    friendIcon.setAttribute('data-bs-toggle', 'modal')
-    friendIcon.setAttribute('data-bs-target', '#friendsModal')
-
-    const changePPtext = document.getElementById('change-pp-text')
-    changePPtext.addEventListener('click', function() {
-      document.getElementById("user_profile_img").click()
+            document.getElementById("user_profile_img").addEventListener('change', function(e) {
+              document.getElementById("modal-profile-picture").setAttribute('src', URL.createObjectURL(e.target.files[0]))
+              document.getElementById("modal-profile-picture").style.width = "150px"
+              document.getElementById("modal-profile-picture").style.height = "150px"
+            })
+          })
+- content_for :js do
+  javascript:
+    document.addEventListener('turbolinks:load', function() {
+      let friendIcon = document.getElementById('friendIcon')
+      friendIcon.setAttribute('type', 'button')
+      friendIcon.setAttribute('data-bs-toggle', 'modal')
+      friendIcon.setAttribute('data-bs-target', '#friendsModal')
     })
-
-    document.getElementById("user_profile_img").addEventListener('change', function(e) {
-      document.getElementById("modal-profile-picture").setAttribute('src', URL.createObjectURL(e.target.files[0]))
-      document.getElementById("modal-profile-picture").style.width = "150px"
-      document.getElementById("modal-profile-picture").style.height = "150px"
-    })
-  })
