@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_friendship
 
   mount_uploader :profile_img, ProfileImageUploader
+  mount_uploader :background_img, BackgroundImageUploader
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
