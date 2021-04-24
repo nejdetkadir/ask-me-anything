@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :friends, through: :asks
 
   has_friendship
+
+  mount_uploader :profile_img, ProfileImageUploader
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

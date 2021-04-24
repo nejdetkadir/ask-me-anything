@@ -4,7 +4,7 @@
       .user-card.p-3
         .text-center.text-white
           = link_to profile_page_path(user), class: "text-white text-decoration-none" do
-            = image_tag user.profile_img, class: "profile-pic", height: "150", width: "auto"
+            = image_tag user.profile_img_url(:large), class: "profile-pic"
           .mt-2
             = link_to user.fullname, profile_page_path(user), class: "text-white text-decoration-none"
             br

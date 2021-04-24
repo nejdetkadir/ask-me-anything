@@ -3,7 +3,7 @@
   - if @requested_friends.count > 0
     - @requested_friends.each do |user|
       .d-flex.text-muted.pt-3
-        = image_tag user.profile_img, :height => "32", :width => "32"
+        = image_tag user.profile_img_url(:medium)
         .pb-3.mb-0.small.lh-sm.border-bottom.w-100
           .d-flex.justify-content-between.align-items-center
             strong.text-gray-dark #{user.fullname} (@#{user.username})

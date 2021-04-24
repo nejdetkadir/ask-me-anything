@@ -320,6 +320,7 @@ DEPENDENCIES
   has_friendship!
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  mini_magick
   omniauth-github!
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
