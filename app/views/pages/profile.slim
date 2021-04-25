@@ -79,6 +79,9 @@
                           = link_to "Delete", ask_path(ask), class: "dropdown-item", method: :delete
                         - else
                           a.dropdown-item Report
+            - content_for :js do
+              javascript:
+                document.getElementById("likes-count").innerHTML =  (parseInt(document.getElementById("likes-count").innerHTML) + parseInt("#{ask.likes.count}"))
       .col-md-4.col-sm-12
         .d-flex.justify-content-evenly.profile-counts
           div.d-block
@@ -87,7 +90,7 @@
             .text-center.text-white.fw-light Posts
           div
             = icon('fas', 'heart', class: "text-white likes")
-            .text-center.text-white.mt-2.fw-bolder 11
+            .text-center.text-white.mt-2.fw-bolder#likes-count 0
             .text-center.text-white.fw-light Likes
           div
             = icon('fas', 'users', class: "text-white friends", id: "friendIcon")
