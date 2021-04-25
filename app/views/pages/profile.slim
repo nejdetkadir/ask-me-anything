@@ -48,25 +48,20 @@
               = link_to "Home", root_path, class: "text-decoration-none text-white"
             li.breadcrumb-item.active @#{@user.username}
         .mt-2
-          - 10.times do |post|
+          - @asks.reverse_each do |ask|
             .card.mt-3.mb-3
               .card-body
-                - if post % 2 == 0
-                  = link_to profile_page_path(@user), class: "text-decoration-none"  do
-                    .d-flex
-                      div
-                        = image_tag @user.profile_img_url(:small)
-                      .div
-                        p.ask-username.align-items-center @#{@user.username}
-                - else
-                  p Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities. For more complex implementations, custom CSS may be necessary
-                  .d-flex
-                    div
-                      = image_tag @user.profile_img_url(:small)
-                    .div
-                      p.ask-username.align-items-center @#{@user.username}
-                p.fw-lighter.ask-time #{time_ago_in_words(Date.today)} ago
-                p Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities. For more complex implementations, custom CSS may be necessary
+                p #{ask.ask}
+                .d-flex
+                  div
+                    = image_tag @user.profile_img_url(:small)
+                  .div
+                    p.ask-username.align-items-center @#{@user.username}
+                p.fw-lighter.ask-time #{time_ago_in_words(ask.updated_at)} ago
+                - if ask.answer
+                  p #{ask.answer}
+                - if ask.answer_image?
+                  = image_tag ask.answer_image_url, class: "img-fluid mb-3"
                 .d-flex.ask-actions.justify-content-between
                   = icon('fas', 'heart')
                   .btn-group.dropup

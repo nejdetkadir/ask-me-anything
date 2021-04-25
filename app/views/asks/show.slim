@@ -1,0 +1,33 @@
+.row
+  .col-md-8.col-sm-12.mx-auto
+    .card
+      .card-body
+        - if @ask.is_anonymous
+          = link_to "@#{@ask.user.username}", profile_page_path(@ask.user), class: "text-decoration-none"
+        p.fw-bolder #{@ask.ask}
+        hr
+        = form_with(model: @ask, url: ask_path) do |f|
+          .mb-3
+            = f.text_area :answer, class: "form-control", rows: "5", placeholder: "Answer"
+            .text-center
+              img.img-fluid.mt-3.d-none
+            = f.file_field :answer_image, class: "d-none", accept: 'image/*'
+          .d-flex.justify-content-between
+            div
+              = icon('fas', 'image', id: "image-icon")
+            = button_tag class: "button btn btn-danger btn-sm ms-2" do
+              = icon('fas', 'paper-plane', class: "text-white")
+- content_for :js do
+  javascript:
+    document.getElementById("image-icon").addEventListener('click', function() {
+      document.getElementById("ask_answer_image").click()
+    })
+
+    document.getElementById("ask_answer_image").addEventListener('change', function(e) {
+      let imageNode = document.getElementsByClassName("img-fluid")[0]
+      imageNode.setAttribute('src', URL.createObjectURL(e.target.files[0]))
+      imageNode.classList.remove("d-none")
+    })  
+  
+
+

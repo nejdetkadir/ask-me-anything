@@ -198,6 +198,12 @@ i.friends{
   color: white;
 }
 
+#image-icon {
+  cursor: pointer;
+  color: grey;
+  font-size: xx-large;
+}
+
 @media only screen and (max-width: 600px) {
   .lg-desktop{
     padding: 0;

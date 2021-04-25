@@ -1,13 +1,12 @@
 .my-3.p-3.bg-light.rounded.shadow-sm
-  h6.border-bottom.pb-2.mb-0 Suggestions
-  - 4.times do |user|
+  h6.border-bottom.pb-2.mb-0 Your unanswered asks
+  - @asks.reverse_each do |ask|
     .d-flex.text-muted.pt-3
-      svg.bd-placeholder-img.flex-shrink-0.me-2.rounded(width='32' height='32' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder: 32x32' preserveAspectRatio='xMidYMid slice' focusable='false')
-        title Placeholder
-        rect(width='100%' height='100%' fill='#007bff')
-        text(x='50%' y='50%' fill='#007bff' dy='.3em') 32x32
+      - if ask.is_anonymous
+      = image_tag ask.is_anonymous ? current_user.profile_img_url(:medium) : ask.user.profile_img_url(:medium)
       .pb-3.mb-0.small.lh-sm.border-bottom.w-100
         .d-flex.justify-content-between
-          strong.text-gray-dark Full Name
-          = link_to "See Profile", root_path, class: "text-decoration-none"
-        span.d-block @username
+          strong.text-gray-dark You have a new question: #{ask.ask}
+          = link_to "Answer", ask_path(ask), class: "text-decoration-none"
+        - if !ask.is_anonymous
+          span.d-block #{ask.user.username}
