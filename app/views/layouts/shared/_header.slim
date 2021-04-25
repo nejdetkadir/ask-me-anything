@@ -15,7 +15,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
             = icon('fas', 'user')
           = link_to requested_friends_page_path, class: "btn menu-icon" do
             = icon('fas', 'users')
-          = link_to profile_page_path(current_user), class: "btn menu-icon" do
+          = link_to asks_path, class: "btn menu-icon" do
             = icon('fas', 'inbox')
           .dropdown
             button#settingDropdown.btn.menu-icon.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
