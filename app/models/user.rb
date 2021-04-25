@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_many :asks, dependent: :destroy
   has_many :friends, through: :asks
+  has_many :likes, dependent: :destroy
 
   has_friendship
 

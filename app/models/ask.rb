@@ -5,4 +5,6 @@ class Ask < ApplicationRecord
   validates_presence_of :friend_id
 
   mount_uploader :answer_image, AskAnswerUploader
+
+  has_many :likes, dependent: :destroy
 end
