@@ -69,16 +69,12 @@
                       = icon('fas', 'ellipsis-h')
                     ul.dropdown-menu
                       li
-                        a.dropdown-item(href='#') Action
-                      li
-                        a.dropdown-item(href='#') Another action
-                      li
-                        a.dropdown-item(href='#') Something else here   
+                        = link_to "Delete", ask_path(ask), class: "dropdown-item", method: :delete
       .col-md-4.col-sm-12
         .d-flex.justify-content-evenly.profile-counts
           div.d-block
             = icon('fas', 'comments', class: "text-white posts")
-            .text-center.text-white.mt-2.fw-bolder #{@user.asks.count}
+            .text-center.text-white.mt-2.fw-bolder #{@asks.count}
             .text-center.text-white.fw-light Posts
           div
             = icon('fas', 'heart', class: "text-white likes")

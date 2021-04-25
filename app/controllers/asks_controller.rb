@@ -1,6 +1,6 @@
 class AsksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_ask, only: [:show, :update]
+  before_action :set_ask, only: [:show, :update, :destroy]
 
   def create
     @ask = Ask.new(ask_params)
@@ -19,6 +19,22 @@ class AsksController < ApplicationController
   end
 
   def show
+  end
+
+  def destroy
+    @ask = Ask.find(params[:id])
+
+    if @ask.friend == current_user
+      if @ask.destroy
+        flash[:notice] = "Deleted successfully"
+      else
+        flash[:alert] = "Something went wrong"
+      end
+    else
+      flash[:alert] = "access denied"
+    end
+
+    redirect_to profile_page_path(current_user)
   end
   
   def update
