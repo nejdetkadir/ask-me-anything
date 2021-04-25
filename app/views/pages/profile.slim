@@ -4,8 +4,8 @@
 .row.p-3
   .col-md-10.col-sm-12.mx-auto
     .d-flex.justify-content-center
-      = image_tag @user.profile_img_url(:large)
-      .d-block.text-white
+      = image_tag @user.profile_img_url(:large), class: "profile-pic"
+      .d-block.text-white.ps-4
         p.fw-normal @#{@user.username}
         h3.fw-bold #{@user.fullname}
         - if user_signed_in?
@@ -69,7 +69,10 @@
                       = icon('fas', 'ellipsis-h')
                     ul.dropdown-menu
                       li
-                        = link_to "Delete", ask_path(ask), class: "dropdown-item", method: :delete
+                        - if @user == current_user
+                          = link_to "Delete", ask_path(ask), class: "dropdown-item", method: :delete
+                        - else
+                          a.dropdown-item Report
       .col-md-4.col-sm-12
         .d-flex.justify-content-evenly.profile-counts
           div.d-block
@@ -107,6 +110,11 @@
               .fw-normal.text-danger.fs-13
                 = icon('far', 'user-circle')
                 |&nbsp;Change photo
+        .row
+          - @gallery.each do |ask|
+            .col-md-4
+              = image_tag ask.answer_image_url(:thumb), class: "img-fluid"
+
         .d-flex.justify-content-start.mt-2.align-items-center
           .color-grey.fs-13 Nothing to show here at this time
 #friendsModal.modal.fade(tabindex='-1' aria-labelledby='friendsModalLabel' aria-hidden='true')

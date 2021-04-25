@@ -9,6 +9,8 @@ class PagesController < ApplicationController
     @user = User.friendly.find(params[:id])
     @asks = Ask.where(friend_id: @friend.id).where.not(answer: "", answer_image: "")
 
+    @gallery = Ask.where(friend_id: @friend.id).where.not(answer_image: nil).limit(6)
+
     @ask = Ask.new
     @ask.friend = @user
   end
