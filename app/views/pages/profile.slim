@@ -28,7 +28,7 @@
                 = f.submit "#{current_user.friends_with?(@user) ? 'Remove friend' : 'Send friend request'}", class: "btn #{current_user.friends_with?(@user) ? 'btn-outline-danger' : 'btn-outline-warning'} text-white fs-13"
     hr.bg-white.mt-5.mb-5
     .row
-      .col-md-8.col-sm-3
+      .col-md-8.col-sm-12
         .card.ask-card.text-white
           = form_with model: @ask, html: {class: "card-body"} do |f|
             = f.hidden_field :friend_id
@@ -79,7 +79,7 @@
                         a.dropdown-item(href='#') Another action
                       li
                         a.dropdown-item(href='#') Something else here   
-      .col-md-4
+      .col-md-4.col-sm-12
         .d-flex.justify-content-evenly.profile-counts
           div.d-block
             = icon('fas', 'comments', class: "text-white posts")
@@ -95,9 +95,11 @@
             .text-center.text-white.fw-light Friends
         .d-flex.justify-content-between.mt-4
           .fw-bolder.text-white About me
-          .fw-normal.text-danger.fs-13
-            = icon('fas', 'edit')
-            |&nbsp;Edit profile
+          - if user_signed_in?
+            - if current_user == @user
+              .fw-normal.text-danger.fs-13
+                = icon('fas', 'edit')
+                |&nbsp;Edit profile
         .d-flex.justify-content-start.mt-3.align-items-center
           = icon('fas', 'user', class: "color-grey")
           .fs-13.ms-2.color-grey #{@user.bio}
@@ -109,9 +111,11 @@
           = link_to @user.website, @user.website, class: "fs-13 ms-2 color-red text-decoration-none red-link-hover", target: "_blank"
         .d-flex.justify-content-between.mt-4
           .fw-bolder.text-white Photo gallery
-          .fw-normal.text-danger.fs-13
-            = icon('far', 'user-circle')
-            |&nbsp;Change photo
+          - if user_signed_in?
+            - if current_user == @user
+              .fw-normal.text-danger.fs-13
+                = icon('far', 'user-circle')
+                |&nbsp;Change photo
         .d-flex.justify-content-start.mt-2.align-items-center
           .color-grey.fs-13 Nothing to show here at this time
 #friendsModal.modal.fade(tabindex='-1' aria-labelledby='friendsModalLabel' aria-hidden='true')
