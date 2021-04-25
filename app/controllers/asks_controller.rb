@@ -1,6 +1,8 @@
 class AsksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_ask, only: [:show, :update, :destroy]
+  
+  include ApplicationHelper
 
   def create
     @ask = Ask.new(ask_params)
@@ -19,6 +21,21 @@ class AsksController < ApplicationController
   end
 
   def show
+  end
+
+  def like
+    @ask = Ask.find(params[:id])
+    if liked_it(current_user.id, @ask.id)
+      liked_it(current_user.id, @ask.id).destroy
+      flash[:notice] = "You got the liking undo"
+    else
+      flash[:notice] = "You like it"
+      @like = Like.new
+      @like.user = current_user
+      @like.ask = @ask
+      @like.save
+    end
+    redirect_to profile_page_path(current_user)
   end
 
   def destroy

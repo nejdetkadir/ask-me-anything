@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   # updates of user
   patch ':id/update', to: 'users#update', as: :update_user
 
+  # likes
+  post 'asks/:id/like', to: "asks#like", as: :like
+
   # general
   get ':id', to: 'pages#profile', as: :profile_page
   get 'pages/explore', to: 'pages#explore', as: :explore_page

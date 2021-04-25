@@ -204,6 +204,14 @@ i.friends{
   font-size: xx-large;
 }
 
+i.liked{
+  color: red !important;
+}
+
+i.unliked{
+  color: #cdcdd9;
+}
+
 @media only screen and (max-width: 600px) {
   .lg-desktop{
     padding: 0;

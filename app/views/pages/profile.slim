@@ -63,7 +63,13 @@
                 - if ask.answer_image?
                   = image_tag ask.answer_image_url, class: "img-fluid mb-3"
                 .d-flex.ask-actions.justify-content-between
-                  = icon('fas', 'heart')
+                  = link_to like_path(ask), class: "text-decoration-none", method: :post do
+                    - if liked_it(current_user.id, ask.id)
+                      = icon('fas', 'heart', class: "liked")
+                    - else
+                      = icon('fas', 'heart', class: "unliked")
+                    - if ask.likes.count > 0
+                      small.color-red.ps-2 #{ask.likes.count}
                   .btn-group.dropup
                     button.btn(type='button' data-bs-toggle='dropdown' aria-expanded='false')
                       = icon('fas', 'ellipsis-h')
@@ -114,7 +120,6 @@
           - @gallery.each do |ask|
             .col-md-4
               = image_tag ask.answer_image_url(:thumb), class: "img-fluid"
-
         .d-flex.justify-content-start.mt-2.align-items-center
           .color-grey.fs-13 Nothing to show here at this time
 #friendsModal.modal.fade(tabindex='-1' aria-labelledby='friendsModalLabel' aria-hidden='true')
