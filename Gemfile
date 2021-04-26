@@ -32,6 +32,8 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'friendly_id', '~> 5.4.0'
 gem 'has_friendship', github: 'sungwoncho/has_friendship'
 
+gem 'bootstrap', '~> 5.0.0.beta3'
+
 # omniauths
 gem 'omniauth-google-oauth2'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'

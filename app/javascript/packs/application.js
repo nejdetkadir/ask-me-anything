@@ -12,5 +12,6 @@ Rails.start()
 //Turbolinks.start()
 ActiveStorage.start()
 
-import "bootstrap/dist/js/bootstrap.bundle"
+import "@popperjs/core"
+import "bootstrap"
 global.toastr = require("toastr")
