@@ -32,7 +32,7 @@ class User < ApplicationRecord
 
     if provider.eql?("github")
       unless user
-        user = User.create(email: data['email'], fullname: data['fullname'], username: "#{data['username']}#{Time.now.day.to_s}".downcase.tr(" ", "_"), password: Devise.friendly_token[0,20])
+        user = User.create(email: data['email'], fullname: data['name'], username: "#{data['nickname']}#{Time.now.day.to_s}".downcase.tr(" ", "_"), password: Devise.friendly_token[0,20])
       end
     else
       unless user
