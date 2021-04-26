@@ -10,6 +10,10 @@ class User < ApplicationRecord
 
   mount_uploader :profile_img, ProfileImageUploader
   mount_uploader :background_img, BackgroundImageUploader
+
+  # validates
+  validates_uniqueness_of :username
+  validates_presence_of [:fullname, :username]
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
