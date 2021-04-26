@@ -1,5 +1,5 @@
-# rails 6 boilerplate
-  Includes [bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/), [devise gem](https://github.com/heartcombo/devise) with omniauth([google](https://github.com/zquestz/omniauth-google-oauth2) - [github](https://github.com/omniauth/omniauth-github)), [slim gem](https://github.com/slim-template/slim) and [toastr](https://github.com/CodeSeven/toastr) 
+# ask me anything
+  It is a clone application of [ask.fm](https://ask.fm/), created with Ruby on Rails.
 
 * Ruby version
   ```
@@ -16,6 +16,7 @@
 ## Prerequisites
 - [Ruby](https://rvm.io/)
 - [NodeJS (>=10.x)](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
+- ImageMagick `sudo apt-get install imagemagick libmagickcore-dev libmagickwand-dev`
 - [Yarn](https://yarnpkg.com/lang/en/docs/install/#debian-stable)
 - [PostgreSQL](https://www.postgresql.org/download/)
 
