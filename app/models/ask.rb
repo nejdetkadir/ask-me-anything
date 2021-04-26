@@ -7,4 +7,8 @@ class Ask < ApplicationRecord
   mount_uploader :answer_image, AskAnswerUploader
 
   has_many :likes, dependent: :destroy
+
+  # validations
+  validates :ask, presence: true, length: {maximum: 300, minimum: 3}
+  validates :answer, presence: true, length: {maximum: 500, minimum: 3}
 end

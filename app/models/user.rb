@@ -14,6 +14,10 @@ class User < ApplicationRecord
   # validates
   validates_uniqueness_of :username
   validates_presence_of [:fullname, :username]
+
+  validates :bio, length: {maximum: 60}
+  validates :location, length: {maximum: 25}
+  validates :website, length: {maximum: 60}
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
