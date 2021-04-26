@@ -17,9 +17,7 @@
                 li
                   a.dropdown-item(type="button" data-bs-toggle="modal" data-bs-target="#profilePicModal") Change photo 
                 li
-                  a.dropdown-item(href='#') Another action
-                li
-                  a.dropdown-item(href='#') Something else here
+                  = link_to "Settings", settings_page_path(current_user), class: "dropdown-item"
           - else
             - if current_user.pending_friends.include?(@user)
               span.badge.bg-warning.text-dark Pending your request
@@ -100,7 +98,7 @@
           .fw-bolder.text-white About me
           - if user_signed_in?
             - if current_user == @user
-              .fw-normal.text-danger.fs-13
+              = link_to settings_page_path, class: "fw-normal text-danger fs-13 profile-right-button"
                 = icon('fas', 'edit')
                 |&nbsp;Edit profile
         .d-flex.justify-content-start.mt-3.align-items-center
@@ -116,7 +114,7 @@
           .fw-bolder.text-white Photo gallery
           - if user_signed_in?
             - if current_user == @user
-              .fw-normal.text-danger.fs-13
+              button.fw-normal.text-danger.fs-13.profile-right-button(type="button" data-bs-toggle="modal" data-bs-target="#profilePicModal")
                 = icon('far', 'user-circle')
                 |&nbsp;Change photo
         .row

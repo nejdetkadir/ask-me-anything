@@ -1,0 +1,63 @@
+.container
+  .row
+    .col-md-6.col-sm-10.col-xs-11.mx-auto.bg-light.rounded-3.p-3
+      = form_with(model: current_user, url: update_user_path) do |f|
+        .mb-3
+          = f.label :fullname, class: "form-label"
+          = f.text_field :fullname, class: "form-control"
+        .mb-3
+          = f.label :location, class: "form-label"
+          = f.text_field :location, class: "form-control"
+        .mb-3
+          = f.label :bio, class: "form-label"
+          = f.text_area :bio, class: "form-control"
+        .mb-3
+          = f.label :website, class: "form-label"
+          = f.url_field :website, class: "form-control"
+        .mb-3
+          = f.label :birthday, class: "form-label"
+          = f.date_field :birthday, class: "form-control"
+        hr
+        .mb-3
+          = f.label :profile_img
+          .d-flex.align-items-center
+            = image_tag current_user.profile_img_url(:normal), class: "profile-pic"
+            = f.file_field :profile_img, class: "d-none"
+            p.color-red.ps-3#change-pp-text Change photo
+        .mb-3
+          = f.label :background_img
+          .d-flex.align-items-center
+            = image_tag current_user.background_img_url(:thumb), class: "img-thumbnail"
+            = f.file_field :background_img, class: "d-none"
+            p.color-red.ps-3#change-b-text Change your background
+        hr
+        .d-flex.justify-content-between
+          = link_to "Cancel", profile_page_path(current_user), class: "btn btn-secondary"
+          = f.submit "Update", class: "btn btn-danger"
+- content_for :js do
+  javascript:
+    document.addEventListener('DOMContentLoaded', function() {
+      setTextClickable("change-pp-text", "user_profile_img")
+      setTextClickable("change-b-text", "user_background_img")
+
+      setFileToImage("user_profile_img", "profile-pic")
+      setFileToImage("user_background_img", "img-thumbnail")
+    })
+
+    function setTextClickable(textId, inputId) {
+      document.getElementById(textId).addEventListener('click', function() {
+        document.getElementById(inputId).click()
+      })
+    }
+
+    function setFileToImage(inputId, imgClass) {
+      document.getElementById(inputId).addEventListener('change', function(e) {
+        let imageNode = document.getElementsByClassName(imgClass)[0] 
+        imageNode.setAttribute('src', URL.createObjectURL(e.target.files[0]))
+        imageNode.style.width = "50px"
+        imageNode.style.height = "50px"
+      })
+    }
+  
+
+

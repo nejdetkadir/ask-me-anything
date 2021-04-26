@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   # general
   get ':id', to: 'pages#profile', as: :profile_page
+  get ':id/settings', to: 'pages#settings', as: :settings_page
   get 'pages/explore', to: 'pages#explore', as: :explore_page
   get 'pages/requested-friends', to: 'pages#requested_friends', as: :requested_friends_page
 end

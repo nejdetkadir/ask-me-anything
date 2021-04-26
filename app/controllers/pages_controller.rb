@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, only: [:requested_friends]
-  before_action :set_friend, only: %w[profile]
+  before_action :set_friend, only: %w[profile settings]
 
   def home
   end
@@ -24,6 +24,12 @@ class PagesController < ApplicationController
       @users = User.where('id != ?', current_user.id).limit(32)
     else
       @users = User.order(id: :desc).limit(32)
+    end
+  end
+
+  def settings
+    if current_user != @friend
+      redirect_to settings_page_path(current_user)
     end
   end
   
