@@ -153,7 +153,14 @@
   .modal-dialog.modal-dialog-scrollable
     .modal-content
       .modal-header
-        h5#friendsModalLabel.modal-title Your friends
+        h5#friendsModalLabel.modal-title
+        - if user_signed_in? 
+          - if current_user == @user
+            | Your friends
+          - else
+            | #{@user.fullname}'s friends
+        - else
+          | #{@user.fullname}'s friends
         button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body
         - @user.friends.each do |user|
@@ -163,8 +170,10 @@
               .d-flex.justify-content-between.align-items-center
                 strong.text-gray-dark #{user.fullname} (@#{user.username})
                 .d-flex.friend-actions
-                  = link_to remove_friend_request_path(user), method: :post
-                    = icon('fas', 'trash', class: "decline")
+                  - if user_signed_in? 
+                    - if current_user == @user
+                      = link_to remove_friend_request_path(user), method: :post
+                        = icon('fas', 'trash', class: "decline")
 - if user_signed_in? 
   - if current_user == @user
       #profilePicModal.modal.fade(tabindex='-1' aria-labelledby='profilePicModalLabel' aria-hidden='true')
