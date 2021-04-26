@@ -15,6 +15,8 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
             = icon('fas', 'user')
           = link_to requested_friends_page_path, class: "btn menu-icon" do
             = icon('fas', 'users')
+            - if friend_request_count > 0
+              span.badge.color-red #{friend_request_count}
           = link_to asks_path, class: "btn menu-icon" do
             = icon('fas', 'inbox')
             - if asks_count > 0
