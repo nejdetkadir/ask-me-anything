@@ -7,6 +7,8 @@
       .pb-3.mb-0.small.lh-sm.border-bottom.w-100
         .d-flex.justify-content-between
           strong.text-gray-dark You have a new question: #{ask.ask}
-          = link_to "Answer", ask_path(ask), class: "text-decoration-none"
+          .d-flex
+            = link_to "Answer", ask_path(ask), class: "text-decoration-none"
+            = link_to "Delete", ask_path(ask), class: "text-decoration-none ps-2 color-red", method: :delete
         - if !ask.is_anonymous
           span.d-block #{ask.user.username}
