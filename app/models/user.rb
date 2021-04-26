@@ -26,15 +26,19 @@ class User < ApplicationRecord
 
   def self.from_omniauth(access_token)
     # You can learn which provider used
-    # provider = access_token.provider 
-
+    provider = access_token.provider
     data = access_token.info
-
     user = User.where(email: data['email']).first
 
-    unless user
-      user = User.create(email: data['email'],password: Devise.friendly_token[0,20])
-    end
+    if provider.eql?("github")
+      unless user
+        user = User.create(email: data['email'], fullname: data['fullname'], username: "#{data['username']}#{Time.now.day.to_s}".downcase.tr(" ", "_"), password: Devise.friendly_token[0,20])
+      end
+    else
+      unless user
+        user = User.create(email: data['email'], fullname: data['name'], username: "#{data['name']}#{Time.now.day.to_s}".downcase.tr(" ", "_"), password: Devise.friendly_token[0,20])
+      end
+    end 
     user
   end
   
