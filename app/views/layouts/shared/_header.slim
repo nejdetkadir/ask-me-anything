@@ -17,6 +17,8 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
             = icon('fas', 'users')
           = link_to asks_path, class: "btn menu-icon" do
             = icon('fas', 'inbox')
+            - if asks_count > 0
+              span.badge.color-red #{asks_count}
           .dropdown
             button#settingDropdown.btn.menu-icon.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
               = icon('fas', 'cog')
