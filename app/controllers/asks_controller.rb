@@ -12,6 +12,10 @@ class AsksController < ApplicationController
       redirect_to profile_page_path(@ask.friend)
     else
       flash[:alert] = "Something went wrong"
+      @ask.errors.full_messages.each do |error|
+        flash[:alert] = error
+        break
+      end      
       redirect_to profile_page_path(@ask.friend)
     end
   end
